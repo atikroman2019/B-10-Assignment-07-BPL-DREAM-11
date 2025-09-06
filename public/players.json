@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "name": "Virat Kohli",
+    "image": "https://i.ibb.co.com/dwWBQ101/Virat-Kohli.jpg",
+    "country": "India",
+    "player_category": "Batsman",
+    "batting_type": "Right-hand bat",
+    "bowling_type": "Right-arm medium",
+    "price": 950000
+  },
+  {
+    "id": 2,
+    "name": "Steve Smith",
+    "image": "https://i.ibb.co.com/0y4zFyvT/Steve-Smith.jpg",
+    "country": "Australia",
+    "player_category": "Batsman",
+    "batting_type": "Right-hand bat",
+    "bowling_type": "Right-arm leg spin",
+    "price": 900000
+  },
+  {
+    "id": 3,
+    "name": "Kane Williamson",
+    "image": "https://i.ibb.co.com/QRRP12w/Kane-Williamson.webp",
+    "country": "New Zealand",
+    "player_category": "Batsman",
+    "batting_type": "Right-hand bat",
+    "bowling_type": "Right-arm off spin",
+    "price": 880000
+  },
+  {
+    "id": 4,
+    "name": "Joe Root",
+    "image": "https://i.ibb.co.com/5hGsj5N7/Joe-Root.jpg",
+    "country": "England",
+    "player_category": "Batsman",
+    "batting_type": "Right-hand bat",
+    "bowling_type": "Right-arm off break",
+    "price": 870000
+  },
+  {
+    "id": 5,
+    "name": "Shakib Al Hasan",
+    "image": "https://i.ibb.co.com/ymGNnp0D/Shakib-Al-Hasan.jpg",
+    "country": "Bangladesh",
+    "player_category": "All-rounder",
+    "batting_type": "Left-hand bat",
+    "bowling_type": "Slow left-arm orthodox",
+    "price": 860000
+  },
+  {
+    "id": 6,
+    "name": "Ben Stokes",
+    "image": "https://i.ibb.co.com/N282y3Kt/Ben-Stokes.jpg",
+    "country": "England",
+    "player_category": "All-rounder",
+    "batting_type": "Left-hand bat",
+    "bowling_type": "Right-arm fast-medium",
+    "price": 920000
+  },
+  {
+    "id": 7,
+    "name": "Rashid Khan",
+    "image": "https://i.ibb.co.com/MFf84TD/Rashid-Khan.webp",
+    "country": "Afghanistan",
+    "player_category": "Bowler",
+    "batting_type": "Right-hand bat",
+    "bowling_type": "Right-arm leg spin",
+    "price": 780000
+  },
+  {
+    "id": 8,
+    "name": "Jasprit Bumrah",
+    "image": "https://i.ibb.co.com/ks0D4bQ4/Jasprit-Bumrah.jpg",
+    "country": "India",
+    "player_category": "Bowler",
+    "batting_type": "Right-hand bat",
+    "bowling_type": "Right-arm fast",
+    "price": 890000
+  },
+  {
+    "id": 9,
+    "name": "Shaheen Afridi",
+    "image": "https://i.ibb.co.com/99ZXtwNQ/Shaheen-Afridi.webp",
+    "country": "Pakistan",
+    "player_category": "Bowler",
+    "batting_type": "Left-hand bat",
+    "bowling_type": "Left-arm fast-medium",
+    "price": 850000
+  },
+  {
+    "id": 10,
+    "name": "Quinton de Kock",
+    "image": "https://i.ibb.co.com/pBfXF75B/Quinton-de-Kock.png",
+    "country": "South Africa",
+    "player_category": "Wicket-keeper",
+    "batting_type": "Left-hand bat",
+    "bowling_type": "N/A",
+    "price": 840000
+  },
+  {
+    "id": 11,
+    "name": "David Warner",
+    "image": "https://i.ibb.co.com/Lzwj8mJG/David-Warner.jpg",
+    "country": "Australia",
+    "player_category": "Batsman",
+    "batting_type": "Left-hand bat",
+    "bowling_type": "Right-arm leg spin",
+    "price": 880000
+  },
+  {
+    "id": 12,
+    "name": "Trent Boult",
+    "image": "https://i.ibb.co.com/b5fTcRv6/Trent-Boult.jpg",
+    "country": "New Zealand",
+    "player_category": "Bowler",
+    "batting_type": "Right-hand bat",
+    "bowling_type": "Left-arm fast-medium",
+    "price": 830000
+  }
+]
