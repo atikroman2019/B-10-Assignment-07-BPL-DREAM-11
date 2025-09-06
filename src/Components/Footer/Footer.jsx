@@ -3,10 +3,10 @@ import logo from "../../assets/logo-footer.png"
 
 function Footer() {
   return (
-    <footer className="bg-[#050B24] text-gray-300 relative z-5 top-28 -mt-32 pt-8 pb-6 w-full">
+    <footer className="bg-[#050B24] text-gray-300 relative z-5 top-20 -mt-32 pt-8 pb-6 w-full">
 
 
-              <div className="flex justify-center mt-20">
+              <div className="flex justify-center mt-12 mb-10">
         <img src={logo} alt="Logo" className="h-16" />
       </div>
 
@@ -23,9 +23,9 @@ function Footer() {
         </div>
 
         {/* Quick Links */}
-        <div>
+        <div className="mx-auto">
           <h3 className="text-white font-semibold mb-3">Quick Links</h3>
-          <ul className="space-y-2 text-sm">
+          <ul className="space-y-2 mx-auto text-sm">
             <li><a href="#" className="hover:text-white">Home</a></li>
             <li><a href="#" className="hover:text-white">Services</a></li>
             <li><a href="#" className="hover:text-white">About</a></li>

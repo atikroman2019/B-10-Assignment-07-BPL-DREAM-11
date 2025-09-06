@@ -10,8 +10,8 @@ function Newsletter() {
   };
 
   return (
-    <section className="max-w-4xl relative top-16 z-10 h-[300px] mx-auto bg-gradient-to-r from-blue-100 via-white to-orange-100 rounded-2xl shadow-lg p-8 overflow-auto">
-      <h2 className="text-2xl font-bold text-center">Subscribe to our Newsletter</h2>
+    <section className="max-w-4xl relative top-5 border-s-2 z-10 h-[250px] mx-auto bg-gradient-to-r from-blue-100 via-white to-orange-100 rounded-2xl shadow-lg p-8 overflow-auto">
+      <h2 className="text-2xl mt-8 font-bold text-center">Subscribe to our Newsletter</h2>
       <p className="text-gray-600 text-center mt-2">
         Get the latest updates and news right in your inbox!
       </p>

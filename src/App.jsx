@@ -21,7 +21,7 @@ function App() {
     <>
     <Header coins ={coins}></Header>
     <Banner handleClaim={handleClaim}></Banner>
-    <Players></Players>
+    <Players setCoins={setCoins}></Players>
     <Newsletter></Newsletter>
     <Footer></Footer>
     </>
