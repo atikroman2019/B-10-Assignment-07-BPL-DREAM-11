@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import { IoFlagSharp } from "react-icons/io5";
 import { FaUser } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Players = ({ coins, setCoins }) => {
   const [players, setPlayers] = useState([]);
   const [selectedPlayers, setSelectedPlayers] = useState([]);
   const [activeTab, setActiveTab] = useState("available");
-  const [showModal, setShowModal] = useState(false);
-  const [modalMessage, setModalMessage] = useState("");
 
   useEffect(() => {
     fetch("/players.json")
@@ -16,31 +16,50 @@ const Players = ({ coins, setCoins }) => {
       .then((data) => setPlayers(data));
   }, []);
 
-  // Add player
-  const handleSelect = (player) => {
-    if (selectedPlayers.length >= 6) {
-      setModalMessage("❌ You can only select up to 6 players!");
-      setShowModal(true);
-      return;
-    }
+  // Add player 
 
-    if (coins < player.price) {
-      setModalMessage("❌ Not enough coins to select this player!");
-      setShowModal(true);
-      return;
-    }
+const handleSelect = (player) => {
+  const safeCoins = Number(coins) || 0;
+  const price = Number(player.price) || 0;
 
-    if (!selectedPlayers.find((p) => p.id === player.id)) {
-      setSelectedPlayers([...selectedPlayers, player]);
-      setCoins(coins - player.price); // ✅ reduce balance
-    }
-  };
+  if (selectedPlayers.length >= 6) {
+    toast.error("❌ You can only select up to 6 players!");
+    return;
+  }
+
+  if (safeCoins === 0) {
+    toast.error("❌ You have no coins left!");
+    return;
+  }
+
+  if (selectedPlayers.find((p) => p.id === player.id)) {
+    toast.info(`${player.name} is already selected.`);
+    return;
+  }
+
+  if (safeCoins < price) {
+    toast.error("❌ Not enough coins to buy this player!");
+    return;
+  }
+
+  setSelectedPlayers((prev) => [...prev, player]);
+  setCoins((prev) => (Number(prev) || 0) - price);
+
+  toast.success(`✅ ${player.name} added successfully!`);
+};
+
+
+
+
+
 
   // Remove player (refund coins)
   const handleRemove = (id) => {
     const playerToRemove = selectedPlayers.find((p) => p.id === id);
     if (playerToRemove) {
-      setCoins(coins + playerToRemove.price); // ✅ refund balance
+      setCoins(prev => prev + playerToRemove.price);
+
+      toast.info(`ℹ️ ${playerToRemove.name} removed.`);
     }
     setSelectedPlayers(selectedPlayers.filter((p) => p.id !== id));
   };
@@ -95,7 +114,7 @@ const Players = ({ coins, setCoins }) => {
                   <p className="text-sm text-gray-600">{player.country}</p>
                 </div>
                 <span className="bg-slate-100 rounded-md px-3 py-1 text-sm text-gray-700">
-                  {player.player_category}
+                  {player.role}
                 </span>
               </div>
 
@@ -157,22 +176,6 @@ const Players = ({ coins, setCoins }) => {
               </div>
             ))
           )}
-        </div>
-      )}
-
-      {/* Modal */}
-      {showModal && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 z-50">
-          <div className="bg-white rounded-lg shadow-lg p-6 w-80 text-center">
-            <h3 className="text-lg font-bold text-red-600 mb-4">Error</h3>
-            <p className="text-gray-700 mb-6">{modalMessage}</p>
-            <button
-              onClick={() => setShowModal(false)}
-              className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
-            >
-              Close
-            </button>
-          </div>
         </div>
       )}
     </div>

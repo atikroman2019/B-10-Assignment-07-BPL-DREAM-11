@@ -4,6 +4,7 @@ import Header from './Components/Header/Header'
 import Players from './Components/Players/Players';
 import Newsletter from './Components/Newsletter/Newsletter';
 import Footer from './Components/Footer/Footer';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
 
@@ -21,7 +22,11 @@ function App() {
     <>
     <Header coins ={coins}></Header>
     <Banner handleClaim={handleClaim}></Banner>
-    <Players setCoins={setCoins}></Players>
+    <Players setCoins={setCoins}
+    coins={coins}
+
+    ></Players>
+    <ToastContainer position="top-center" autoClose={3000}></ToastContainer>
     <Newsletter></Newsletter>
     <Footer></Footer>
     </>
