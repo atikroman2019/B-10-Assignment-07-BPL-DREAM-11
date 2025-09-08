@@ -41,7 +41,7 @@ function Footer() {
             <input
               type="email"
               placeholder="Enter your email"
-              className="w-full px-4 py-2 rounded-l-md border border-gray-300 focus:outline-none"
+              className="w-full text-black px-4 py-2 rounded-l-md border border-gray-300 focus:outline-none"
             />
             <button className="px-4 py-2 rounded-r-md font-medium text-white bg-gradient-to-r from-yellow-400 to-pink-400 hover:opacity-90 transition">
               Subscribe
