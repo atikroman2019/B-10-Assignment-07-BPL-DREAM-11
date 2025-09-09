@@ -16,49 +16,42 @@ const Players = ({ coins, setCoins }) => {
       .then((data) => setPlayers(data));
   }, []);
 
-  // Add player 
+  // Add player
+  const handleSelect = (player) => {
+    const safeCoins = Number(coins) || 0;
+    const price = Number(player.price) || 0;
 
-const handleSelect = (player) => {
-  const safeCoins = Number(coins) || 0;
-  const price = Number(player.price) || 0;
+    if (selectedPlayers.length >= 6) {
+      toast.error("❌ You can only select up to 6 players!");
+      return;
+    }
 
-  if (selectedPlayers.length >= 6) {
-    toast.error("❌ You can only select up to 6 players!");
-    return;
-  }
+    if (safeCoins === 0) {
+      toast.error("❌ You have no coins left!");
+      return;
+    }
 
-  if (safeCoins === 0) {
-    toast.error("❌ You have no coins left!");
-    return;
-  }
+    if (selectedPlayers.find((p) => p.id === player.id)) {
+      toast.info(`${player.name} is already selected.`);
+      return;
+    }
 
-  if (selectedPlayers.find((p) => p.id === player.id)) {
-    toast.info(`${player.name} is already selected.`);
-    return;
-  }
+    if (safeCoins < price) {
+      toast.error("❌ Not enough coins to buy this player!");
+      return;
+    }
 
-  if (safeCoins < price) {
-    toast.error("❌ Not enough coins to buy this player!");
-    return;
-  }
+    setSelectedPlayers((prev) => [...prev, player]);
+    setCoins((prev) => (Number(prev) || 0) - price);
 
-  setSelectedPlayers((prev) => [...prev, player]);
-  setCoins((prev) => (Number(prev) || 0) - price);
-
-  toast.success(`✅ ${player.name} added successfully!`);
-};
-
-
-
-
-
+    toast.success(`✅ ${player.name} added successfully!`);
+  };
 
   // Remove player (refund coins)
   const handleRemove = (id) => {
     const playerToRemove = selectedPlayers.find((p) => p.id === id);
     if (playerToRemove) {
-      setCoins(prev => prev + playerToRemove.price);
-
+      setCoins((prev) => prev + playerToRemove.price);
       toast.info(`ℹ️ ${playerToRemove.name} removed.`);
     }
     setSelectedPlayers(selectedPlayers.filter((p) => p.id !== id));
@@ -66,9 +59,12 @@ const handleSelect = (player) => {
 
   return (
     <div className="w-2/3 mx-auto my-8">
-      {/* Header */}
       <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-bold mb-8">Available Players</h2>
+        <h2 className="text-2xl font-bold mb-8">
+          {activeTab === "available"
+            ? "Available Players"
+            : `Selected Players (${selectedPlayers.length}/6)`}
+        </h2>
         <div className="border rounded-lg overflow-hidden flex">
           <button
             className={`px-4 py-2 ${
@@ -89,7 +85,6 @@ const handleSelect = (player) => {
         </div>
       </div>
 
-      {/* Available Tab → Show Player Cards */}
       {activeTab === "available" && (
         <div className="grid grid-cols-3 gap-6">
           {players.map((player) => (
@@ -140,42 +135,47 @@ const handleSelect = (player) => {
         </div>
       )}
 
-      {/* Selected Tab → Show Compact Rows with Delete */}
       {activeTab === "selected" && (
-        <div className="space-y-4">
-          {selectedPlayers.length === 0 ? (
-            <p className="text-gray-600">No players selected.</p>
-          ) : (
-            selectedPlayers.map((player) => (
-              <div
-                key={player.id}
-                className="flex items-center justify-between border rounded-lg p-3 shadow-sm bg-white"
-              >
-                {/* Thumbnail */}
-                <img
-                  src={player.image}
-                  alt={player.name}
-                  className="w-12 h-12 object-cover rounded"
-                />
-
-                {/* Info */}
-                <div className="flex-1 ml-4">
-                  <h3 className="font-semibold">{player.name}</h3>
-                  <p className="text-sm text-gray-600">
-                    {player.batting_type} | {player.bowling_type}
-                  </p>
-                </div>
-
-                {/* Delete button */}
-                <button
-                  onClick={() => handleRemove(player.id)}
-                  className="text-red-500 hover:text-red-700"
+        <div>
+          <div className="space-y-4">
+            {selectedPlayers.length === 0 ? (
+              <p className="text-gray-500">No players selected yet.</p>
+            ) : (
+              selectedPlayers.map((player) => (
+                <div
+                  key={player.id}
+                  className="flex items-center justify-between border rounded-lg p-3 shadow-sm bg-white"
                 >
-                  <MdDelete size={20} />
-                </button>
-              </div>
-            ))
-          )}
+                  <img
+                    src={player.image}
+                    alt={player.name}
+                    className="w-12 h-12 object-cover rounded"
+                  />
+
+                  <div className="flex-1 ml-4">
+                    <h3 className="font-semibold">{player.name}</h3>
+                    <p className="text-sm text-gray-600">
+                      {player.batting_type} | {player.bowling_type} | {player.price}
+                    </p>
+                  </div>
+
+                  <button
+                    onClick={() => handleRemove(player.id)}
+                    className="text-red-500 hover:text-red-700"
+                  >
+                    <MdDelete size={20} />
+                  </button>
+                </div>
+              ))
+            )}
+          </div>
+
+          <button
+            onClick={() => setActiveTab("available")}
+            className="mt-6 bg-yellow-200 font-semibold hover:bg-yellow-300 rounded-lg px-5 py-2"
+          >
+            Add More Player
+          </button>
         </div>
       )}
     </div>

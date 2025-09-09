@@ -1,10 +1,18 @@
-
 import banner from "../../../src/assets/banner-main.png"
 import shadow from "../../assets/bg-shadow.png"
-const Banner = ({handleClaim}) => {
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-    return (
-           <div
+const Banner = ({ handleClaim}) => {
+  const claimAmount = 500000; // or whatever free credit amount you want
+
+  const handleClick = () => {
+    handleClaim(claimAmount);
+    toast.success(`✅ ${claimAmount} coins added successfully!`);
+  };
+
+  return (
+    <div
       className="relative w-2/3 mx-auto h-[400px] flex items-center justify-center rounded-2xl overflow-hidden bg-black"
       style={{
         backgroundImage: `url(${shadow})`,
@@ -21,13 +29,15 @@ const Banner = ({handleClaim}) => {
         <p className="text-gray-300 mb-6">
           Beyond Boundaries Beyond Limits
         </p>
-        <button onClick={handleClaim} className="bg-lime-400 hover:bg-lime-500 text-black font-semibold px-6 py-2 rounded-lg border-2 border-black shadow-md transition">
+        <button 
+          onClick={handleClick} 
+          className="bg-lime-400 hover:bg-lime-500 text-black font-semibold px-6 py-2 rounded-lg border-2 border-black shadow-md transition"
+        >
           Claim Free Credit
         </button>
       </div>
     </div>
-
-    );
+  );
 };
 
 export default Banner;
