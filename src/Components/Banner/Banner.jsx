@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Banner = ({ handleClaim}) => {
-  const claimAmount = 500000; // or whatever free credit amount you want
+  const claimAmount = 500000;
 
   const handleClick = () => {
     handleClaim(claimAmount);

@@ -47,7 +47,6 @@ const Players = ({ coins, setCoins }) => {
     toast.success(`✅ ${player.name} added successfully!`);
   };
 
-  // Remove player (refund coins)
   const handleRemove = (id) => {
     const playerToRemove = selectedPlayers.find((p) => p.id === id);
     if (playerToRemove) {
